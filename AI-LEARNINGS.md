@@ -4076,3 +4076,27 @@ had "10 done" typed into it while the checklist under it said 15.
   ran.
 - Before answering "where are we", verify the live site against main file
   by file. The answer starts from what a tester gets, not from the branch.
+
+### 1.3ai A workflow result lives in the repo the moment it lands
+
+On 10-18 an eleven-agent workflow measured the road to the twenty (every
+open row sized, the bank gate projected, the launch mechanics, three scopes
+composed and judged) and returned about a million tokens of work as one
+JSON object. I dumped it to the scratchpad, built the board from it, and
+launched the skeptics over the page. The worker restarted before the page
+was published; the container was replaced, and the scratchpad, the
+harness's journals and the uncommitted tree went with it. The next wake was
+11-05, four days after the date the board was for. The restarted skeptics
+opened a page that no longer existed and grepped the repo for it until I
+stopped them.
+
+- Anything that cost more than a minute to make is committed before the
+  next tool call that depends on it: the result JSON goes into design/
+  with the date in the directory name, and the page is built from the
+  committed file. The scratchpad is for things that regenerate for free.
+- A background job whose input lives in the scratchpad is a job the next
+  restart runs against nothing. Agents read paths inside the repo.
+- After any restart, read the clock before the task. The date can have
+  moved by weeks, and a board built for a date that has passed is a
+  different page: the tracker, the launch bar and the status board are
+  corrected first, then the work resumes.

@@ -4056,3 +4056,29 @@ symlink, the relay's ws module), so the first run died at once and the
 09-30 run came back 46 green, 1 red, the online gate. Restored by hand on
 10-09 it ran green alone (13 ok), and row 254 asks for a session-start
 hook so the next move costs nothing. Lesson filed as 1.3ah.
+
+## 5 November · the date passed, and the board was lost twice
+
+He set November 1 on the night of 10-18 and said "tomorrow we are back to
+work". The measurement ran that night: four readers (how fast the project
+ships, the size of all 84 open rows, the bank gate, the mechanics of the
+day), three scopes composed, six verdicts, all "does not fit" (21.75, 23.75
+and 19 build days against the six to nine that fourteen calendar days hold
+at the measured quiet rate). The board was built, voiced to him,
+photographed at both widths, and the skeptics were launched over its text.
+Then the worker restarted. The next wake was 11-05 at 00:22: a fresh
+container, an empty scratchpad, the measurement's journal gone, the branch
+exactly where it was on 10-18, main still the 09-05 ship, and the date four
+days past with no ruling, no cut and no launch. The harness had restarted
+the skeptics, and they were grepping the repo for a page that did not
+exist; I stopped them.
+
+What survived was the repo and my own context. The builder was rewritten
+into tools/scope-board.py, the measurement re-run with the date framed as
+it now is (fourteen days from a restart he has not named), and the result
+goes into design/scope-cut-2026-11-05/ the moment it lands. A second
+restart came forty minutes later and cost the re-run another forty. The
+tracker, V0's launch bar and the status board were corrected before
+anything else: November 1 passed; the board's count is days past the date,
+computed every build; the cut and the new date are his. Lesson filed as
+1.3ai.
