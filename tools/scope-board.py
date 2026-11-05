@@ -32,7 +32,7 @@ if T:
     # undercount. The gameplay rebuild period is the measured one.
     p = next((p for p in T['periods'] if p['from'] >= '2026-08-22'), T['periods'][-1])
     stats.append((f"{p['per_ship_day']:.1f}", 'rows closed per ship day', f"{p['from'][5:]} to {p['to'][5:]} · {p['ship_days']} ship days in 24"))
-    stats.append((f"{T['ruling_lag']['typical_days']:g}", 'day, ruling to built', f"median of {len(T['ruling_lag']['samples'])} rows"))
+    stats.append((f"{T['ruling_lag']['typical_days']:g}", 'days, ruling to built', f"median of {len(T['ruling_lag']['samples'])} rows"))
 if S:
     stats.append((days_fmt(S['total_days']), 'build days on list 1', f"{S['count']} rows sized, one agent"))
 if B:
