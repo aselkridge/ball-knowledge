@@ -136,7 +136,7 @@ _DAYS = (DEADLINE - datetime.date.today()).days
 _PAST_DAYS = -_DAYS
 _DATE_LINE = (f'November 1 passed {_PAST_DAYS} days before this build with no ruling, '
               'no cut and no launch, and no new date is set')
-SCOPE_BOARD = ''   # the scope options board, linked once it is published
+SCOPE_BOARD = 'https://claude.ai/artifact/8mW3m1qw5CKx2hjSaTdpNZ'   # the fourteen-day cut, published 11-05
 
 CURATED = {}
 

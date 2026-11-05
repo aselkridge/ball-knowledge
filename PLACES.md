@@ -287,6 +287,19 @@ RULED 09-14: A5 and B1, built as the mock-up's defaults.
 Harness tools/flow-options-board.mjs; frames
 design/shots/possession-options-2026-09-10/.
 
+### THE FOURTEEN-DAY CUT · row 255's scope board, 11-05
+<https://claude.ai/artifact/8mW3m1qw5CKx2hjSaTdpNZ>
+November 1 was ruled 10-18 and passed with no ruling, no cut and no
+launch. The page is the arithmetic of fourteen days of work from whatever
+day he restarts: the project's measured pace (rows closed per ship day,
+quiet days, ruling-to-built lag), every open row on list 1 sized against a
+comparable shipped thing, three candidate scopes with two verdicts each,
+the bank rule options with projections, the mechanics of the day, and my
+pick after the options. Three rulings on it: the scope, the bank rule, the
+date; a copy-out line at the bottom. Built by `python3 tools/scope-board.py`
+from design/scope-cut-2026-11-05/result.json (the workflow's return value,
+committed the moment it landed); camera tools/scope-board-check.mjs.
+
 ### THE POSSESSION MOCK-UP · the new rules on the real court, 09-07
 <https://raw.githack.com/aselkridge/ball-knowledge/claude/locked-brief-build-078n10/docs/play/?flow=new>
 Against the machine, you are the orange side. `?flow=local` is one phone,
